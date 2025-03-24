@@ -1,0 +1,254 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-image: url(/static/background.jpg);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  flex: 1;
+}
+
+.container h1 a {
+  text-decoration: none;
+  color: white;
+}
+
+header {
+  background-color: black;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.navdiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+.navbar {
+  width: 100%;
+}
+
+.logo {
+  font-size: 30px;
+  margin: 10px 0;
+}
+
+.logo a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+li {
+  list-style: none;
+  margin: 10px;
+}
+
+li a {
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  color: rgb(216, 176, 124);
+}
+
+.hero {
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.symptom-form {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.symptom-form input[type="text"] {
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.symptom-form button {
+  padding: 10px 20px;
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.symptom-form button:hover {
+  background-color: rgba(189, 11, 11, 0.79);
+}
+
+.input-container {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.input-container h2 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 2s steps(13), cursor .4s step-end infinite;
+}
+
+@keyframes cursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+.input-container input[type="text"] {
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 3px solid blue;
+  box-sizing: border-box;
+  font-size: 1.5rem;
+}
+
+.input-container button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #080808;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.input-container button:hover {
+  box-shadow: 0.1rem 0.1rem 0.1rem rgb(23, 9, 174);
+}
+
+.output-container {
+  text-align: center;
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 600px;
+  background-color: aquamarine;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.output-container h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+#output {
+  font-size: 1.2em;
+  color: #333;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container {
+    width: 95%;
+  }
+
+  .navdiv {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .output-container {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .input-container input[type="text"] {
+    width: 90%;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .symptom-form input[type="text"],
+  .input-container input[type="text"] {
+    width: 95%;
+    font-size: 1rem;
+  }
+
+  .output-container {
+    width: 100%;
+    padding: 1rem;
+  }
+}

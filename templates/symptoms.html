@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Symptoms prediction</title>
+  <link rel="stylesheet"href="{{ url_for('static', filename='symp.css') }}">
+  <link rel="icon" href="/static/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="navdiv">
+        <div class="logo"><a href="http://127.0.0.1:5500/home.html">Healthcare Solutions</a></div>
+        <ul>
+          <li><a href="http://127.0.0.1:5500/home.html">Home</a></li>  
+          <li><a href="http://127.0.0.1:5000/">Symptoms</a></li>  
+          <li><a href="http://127.0.0.1:5500/about.html">About us</a></li>
+          <li><a href="http://127.0.0.1:5500/contact.html">Contact</a></li>
+
+          <li class="dropdown">
+            <a href="#" class="dropbtn" id="language-button"> <i class="fa-solid fa-globe"></i></a>
+            <div class="dropdown-content" id="google_translate_element" style="display: none;"></div>
+        </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="input-container">
+      <h2>Get your symptoms predicted:</h2><br>
+      <input type="text" id="userInput" placeholder="Enter the symptoms..">
+      <button id="predictBtn">Predict</button>
+    </div>
+
+    <div class="output-container">
+      <h2>Treatment:  <i class="fa-solid fa-stethoscope fa-beat"></i></h2>
+      <div id="output"></div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('predictBtn').addEventListener('click', function() {
+      const symptoms = document.getElementById('userInput').value;
+      fetch('http://127.0.0.1:5000/predict', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ symptoms: symptoms })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.recommendations) {
+          document.getElementById('output').innerText = data.recommendations.join('\n');
+        } else {
+          document.getElementById('output').innerText = 'No recommendations found';
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('output').innerText = 'An error occurred';
+      });
+    });
+  </script>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+          { pageLanguage: 'en' },
+          'google_translate_element'
+      );
+  }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+  document.getElementById('language-button').addEventListener('click', function () {
+      var dropdownContent = document.getElementById('google_translate_element');
+      if (dropdownContent.style.display === 'block') {
+          dropdownContent.style.display = 'none';
+      } else {
+          dropdownContent.style.display = 'block';
+      }
+  });
+</script>
+
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Healthcare Solutions. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
